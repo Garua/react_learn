@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+
+
+    <style>
+        table{
+            border-collapse: collapse;
+            text-align: center;
+        }
+        td,th{
+            border:1px solid #aaa;
+            padding: 10px 16px;
+        }
+        thead{
+            background-color:#f2f2f2
+        }
+    </style>
+</head>
+<body>
+<div id="root"></div>
+
+
+<script src="../lib/react.js"></script>
+<script src="../lib/react-dom.js"></script>
+<script src="../lib/babel.js"></script>
+<script src="data.js"></script>
+<script type="text/babel">
+  class App extends React.Component{
+    constructor() {
+      super();
+      this.state = {
+        books:books
+      }
+    }
+    render() {
+      const {books} = this.state
+      return (
+              <div>
+                  <table>
+                      <thead>
+                      <tr>
+                          <th>序号</th>
+                          <th>书籍名称</th>
+                          <th>出版日期</th>
+                          <th>价格</th>
+                          <th>购买数量</th>
+                          <th>操作</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      {
+                          books.map((item,index)=>{
+                              return (
+                                  <tr key={index}>
+                                      <td>{index+1}</td>
+                                      <td>{item.name}</td>
+                                      <td>{item.date}</td>
+                                      <td>{"CNY "+item.price}</td>
+                                      <td>
+                                          <button>-</button>
+                                          {item.count}
+                                          <button>+</button>
+                                      </td>
+                                      <td><button>删除</button></td>
+                                  </tr>
+
+                              )
+                          })
+
+                      }
+                      </tbody>
+                  </table>
+              </div>
+      )
+    }
+
+  }
+  const root = ReactDOM.createRoot(document.querySelector("#root"))
+  root.render(<App/>)
+
+</script>
+</body>
+
+</html>

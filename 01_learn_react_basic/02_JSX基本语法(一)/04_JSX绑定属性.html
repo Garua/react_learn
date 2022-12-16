@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="root"></div>
+
+
+<script src="../lib/react.js"></script>
+<script src="../lib/react-dom.js"></script>
+<script src="../lib/babel.js"></script>
+
+<script type="text/babel">
+  class App extends React.Component{
+    constructor() {
+      super();
+      this.state = {
+        title:"Hello World",
+        imgURL:"data:image/jpeg;base64,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",
+        isActive:true,
+        objStyle:{"color":"red",fontSize:"40px"}
+      }
+    }
+    render() {
+      const {isActive,title,imgURL,objStyle} = this.state
+      const classList = ["aa","bb"]
+      if(isActive) classList.push("cc")
+      return (
+              <div>
+                {/*绑定全局属性*/}
+                <h2 title={title}>我是h2元素</h2>
+                <img src={imgURL} alt=""/>
+                {/*动态绑定class属性*/}
+                <h2 className={`cba abc ${isActive ? 'active':''}`}>嘿嘿</h2>
+                <h2 className={classList.join(" ")}>哈哈</h2>
+                {/*动态绑定style属性*/}
+                <h2 style={{"color":"red",fontSize:"40px"}}>样式</h2>
+                <h2 style={objStyle}>样式111</h2>
+              </div>
+      )
+    }
+
+  }
+  const root = ReactDOM.createRoot(document.querySelector("#root"))
+  root.render(<App/>)
+
+</script>
+</body>
+
+</html>

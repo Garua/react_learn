@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="root"></div>
+
+
+<script src="../lib/react.js"></script>
+<script src="../lib/react-dom.js"></script>
+<script src="../lib/babel.js"></script>
+
+<script type="text/babel">
+  class App extends React.Component{
+    constructor() {
+      super();
+      this.state = {
+        message:"Hello World",
+        isReady:true,
+        friend:{
+          name:"小周",
+          age:36
+        }
+      }
+    }
+    render() {
+      const {isReady,message,friend} = this.state
+      let showElement = null
+      if(isReady){
+        showElement =   <h2>准备开始比赛</h2>
+      }else{
+        showElement =  <h1>请提前做好准备</h1>
+      }
+      return (
+              <div>
+               <div> {showElement}</div>
+                {/*三元运算符*/}
+                <div>{isReady? <button disabled>开始战斗</button>:<h2>赶紧准备</h2>}</div>
+
+                {/*逻辑与运算,为null或者undefined时,再 进行显示*/}
+                <div>{friend && <div>{friend.name}</div>}</div>
+              </div>
+      )
+    }
+
+  }
+  const root = ReactDOM.createRoot(document.querySelector("#root"))
+  root.render(<App/>)
+
+</script>
+</body>
+
+</html>

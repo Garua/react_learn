@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+<div id="root"></div>
+
+
+
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script crossorigin src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+<script type="text/babel">
+  const root = ReactDOM.createRoot(document.querySelector("#root"))
+  let messgae = "Hello World"
+  // 监听按钮点击
+  function btnClick(){
+      console.log('按钮点击了')
+      messgae = "Hello Update"
+      rootRender()
+  }
+
+
+  rootRender()// 作用域提升 ,可以先使用再定义
+
+  function rootRender(){
+      root.render((
+          <div>
+              <h2>{messgae}</h2>
+              <button onClick={btnClick}>修改文本</button>
+
+          </div>
+
+      ));
+  }
+</script>
+</body>
+</html>

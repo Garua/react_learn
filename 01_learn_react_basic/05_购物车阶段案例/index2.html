@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+
+
+    <style>
+        table{
+            border-collapse: collapse;
+            text-align: center;
+        }
+        td,th{
+            border:1px solid #aaa;
+            padding: 10px 16px;
+        }
+        thead{
+            background-color:#f2f2f2
+        }
+    </style>
+</head>
+<body>
+<div id="root"></div>
+
+
+<script src="../lib/react.js"></script>
+<script src="../lib/react-dom.js"></script>
+<script src="../lib/babel.js"></script>
+<script src="data.js"></script>
+<script src="format.js"></script>
+<script type="text/babel">
+  class App extends React.Component{
+    constructor() {
+      super();
+      this.state = {
+        books:books
+      }
+    }
+
+    getTotalPrice(){
+      const totalPrice =  this.state.books.reduce((preValue,item)=>{
+        return preValue + item.count*item.price
+      },0)
+      return totalPrice
+    }
+
+    changeCount(index,count){
+      console.log(`书籍${index}的加被点击了!`)
+      const newBooks = [...this.state.books]
+      newBooks[index].count+= count
+      this.setState({
+        books:newBooks
+      })
+    }
+    removeItem(index){
+      console.log(`书籍${index}的删除被点击了!`)
+      const newBooks = [...this.state.books]
+      newBooks.splice(index,1)
+      this.setState({
+        books:newBooks
+      })
+    }
+    renderBooks(){
+      return   <div>
+        <table>
+          <thead>
+          <tr>
+            <th>序号</th>
+            <th>书籍名称</th>
+            <th>出版日期</th>
+            <th>价格</th>
+            <th>购买数量</th>
+            <th>操作</th>
+          </tr>
+          </thead>
+          <tbody>
+          {
+            books.map((item,index)=>{
+              return (
+                      <tr key={index}>
+                        <td>{index+1}</td>
+                        <td>{item.name}</td>
+                        <td>{item.date}</td>
+                        <td>{"CNY "+item.price}</td>
+                        <td>
+                          <button disabled={item.count <= 1?true:false}
+                                  onClick={()=>this.changeCount(index,-1)}>-</button>
+                          {item.count}
+                          <button onClick={()=>this.changeCount(index,1)}>+</button>
+                        </td>
+                        <td><button onClick={()=>this.removeItem(index)}>删除</button></td>
+                      </tr>
+
+              )
+            })
+
+          }
+          </tbody>
+        </table>
+        <h2>总价格:{formatPrice(this.getTotalPrice())}</h2>
+      </div>
+
+    }
+    renderBookEmpty(){
+      return <div>购物车为空,请添加书籍!</div>
+    }
+
+    render() {
+      const {books} = this.state
+      let showElement = null
+
+      return books.length ? this.renderBooks():this.renderBookEmpty()
+    }
+
+  }
+  const root = ReactDOM.createRoot(document.querySelector("#root"))
+  root.render(<App/>)
+
+</script>
+</body>
+
+</html>

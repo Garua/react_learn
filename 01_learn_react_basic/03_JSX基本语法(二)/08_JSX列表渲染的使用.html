@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+
+  <style>
+    .item{
+      border: 1px solid orange;
+      padding: 0 20px;
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+<div id="root"></div>
+
+
+<script src="../lib/react.js"></script>
+<script src="../lib/react-dom.js"></script>
+<script src="../lib/babel.js"></script>
+
+<script type="text/babel">
+  class App extends React.Component{
+    constructor() {
+      super();
+      this.state = {
+      students:[
+        {id:111,name:"why",score:199},
+        {id:112,name:"kobe",score:97},
+        {id:113,name:"james",score:199},
+        {id:114,name:"curry",score:188},
+      ]
+        }
+    }
+    render() {
+      const {students} = this.state
+
+      const filters = students.filter(item => item.score > 100)
+
+      const slices = filters.slice(0,2)
+      return (
+              <div>
+                <h2>学生列表数据</h2>
+                <ul>
+                  {
+                    students.filter(item => item.score>100).slice(0,2).map(item=>{
+                      return (
+                              <div className="item" key={item.id}>
+                                <h2>学号:111</h2>
+                                <h2>姓名:why</h2>
+                                <h2>分数:200</h2>
+                              </div>
+
+                      )
+                    })
+                  }
+                </ul>
+              </div>
+      )
+    }
+
+  }
+  const root = ReactDOM.createRoot(document.querySelector("#root"))
+  root.render(<App/>)
+
+</script>
+</body>
+
+</html>

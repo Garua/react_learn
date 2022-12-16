@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="root"></div>
+
+
+<script src="../lib/react.js"></script>
+<script src="../lib/react-dom.js"></script>
+<script src="../lib/babel.js"></script>
+
+<script type="text/babel">
+  class App extends React.Component{
+    constructor() {
+      super();
+      this.state = {
+        message:"Hello World",
+          counter:100
+      }
+      this.btnClick = this.btnClick.bind(this)
+    }
+    btnClick(){
+        console.log('1111')
+        this.setState({
+            counter:this.state.counter +1
+        })
+    }
+
+    btnClick2 = ()=>{
+      console.log('1111')
+      this.setState({
+        counter:1000
+      })
+    }
+    btnClick3(){
+      console.log('1111')
+      this.setState({
+        counter:666
+      })
+    }
+    render() {
+      const {message,counter} = this.state
+      return (
+              <div>
+                <h2>当前计数: {counter}</h2>
+                  <button onClick={this.btnClick}>按钮1</button>
+                {/*this的绑定方式2 es6 class fields */}
+                  <button onClick={this.btnClick2}>按钮2</button>
+
+                {/*this的绑定方式3 直接传入箭头函数 */}
+                <button onClick={this.btnClick2}>按钮3</button>
+
+                <button onClick={()=>this.btnClick3()}>按钮4</button>
+
+              </div>
+      )
+    }
+
+  }
+  const root = ReactDOM.createRoot(document.querySelector("#root"))
+  root.render(<App/>)
+
+</script>
+</body>
+
+</html>

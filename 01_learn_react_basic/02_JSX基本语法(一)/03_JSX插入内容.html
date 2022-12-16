@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="root"></div>
+
+
+<script src="../lib/react.js"></script>
+<script src="../lib/react-dom.js"></script>
+<script src="../lib/babel.js"></script>
+
+<script type="text/babel">
+  class App extends React.Component{
+    constructor() {
+      super();
+      this.state = {
+        message:"Hello World",
+        names:["abc","cba","nba"],
+        friend:{
+          name:"loocc"
+        },
+        age:19,
+        movies:["星际穿越","流浪地球","独行月球","大话西游","火星救援"]
+
+      }
+    }
+    render() {
+      const {names,message,friend,age,movies} = this.state
+      const liArr = movies.map(o => <li key={o}>{o}</li>)
+      const ageText = age >= 18 ?'成年人':'未成年'
+      return (
+      //        只能有一个根元素
+      <div>
+        {/* 注释*/}
+        <h2>{message}</h2>
+        <h2>{names}</h2>
+        {/* 对象类型不能直接插入,会报错*/}
+        <h2>{friend.name}</h2>
+        <h2>{ageText}</h2>
+        <h2>{liArr}</h2>
+      </div>
+      )
+    }
+
+  }
+  const root = ReactDOM.createRoot(document.querySelector("#root"))
+  root.render(<App/>)
+
+</script>
+</body>
+
+</html>

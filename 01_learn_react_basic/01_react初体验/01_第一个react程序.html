@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello React</title>
+</head>
+<body>
+
+
+    <div id="root"></div>
+    <div id="app"></div>
+<!--添加依赖-->
+<!--react 包含react所必须的核心代码-->
+    <!--react-dom react渲染不同平台所需要的核心代码-->
+    <!--babel 将jsx转换成React的代码工具-->
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script crossorigin src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+<script type="text/babel">
+// <!--    编写react代码-->
+const root = ReactDOM.createRoot(document.querySelector("#root"))
+root.render(<h1>Hello Root</h1>)
+const app = ReactDOM.createRoot(document.querySelector("#app"))
+app.render(<h1>Hello App</h1>)
+</script>
+</body>
+</html>
