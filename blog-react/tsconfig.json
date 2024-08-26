@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "jsx": "react-jsx",       // 对应 React 17+ 的 JSX 运行时
+
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "esModuleInterop": true,
+    "allowImportingTsExtensions": true, //这个选项允许导入路径以 .ts 或 .tsx 作为扩展名
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  }
+}
